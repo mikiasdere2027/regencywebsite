@@ -1,7 +1,7 @@
 /** Shared constants for the Regency Parking Services site. */
 export const BASE = '';
 /** The live site. Canonicals and the sitemap point here. */
-export const REGENCY_ORIGIN = 'https://regencyparkingservice.com';
+export const REGENCY_ORIGIN = 'https://www.regencyparkingservice.com';
 export const IMG = '/images/clients/regency';
 export const PHONE = '713-478-1104';
 /** The six services, as named in forms and lists. */
