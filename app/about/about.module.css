@@ -1,0 +1,181 @@
+/* About page. Tokens (--rg-*) come from .site via the layout; hero, 40+ band
+   and closing CTA reuse ../services/services.module.css. This file adds only
+   the sections unique to About. */
+
+/* [class]: beats services .heroTitle whatever the bundle order. */
+.heroTitle[class] { max-width: 15ch; }
+
+/* 02 story: copy left, photo with a 40+ badge right */
+.story { display: grid; gap: 48px; align-items: center; }
+.prose { display: grid; gap: 16px; margin: 22px 0 32px; color: var(--rg-muted); max-width: 520px; }
+.storyMedia { position: relative; margin: 0; }
+.storyMedia img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; border-radius: 14px; }
+.storyBadge {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  border: 1px solid rgba(201, 162, 75, 0.35);
+  border-radius: 12px;
+  background: rgba(14, 14, 16, 0.86);
+  backdrop-filter: blur(8px);
+  color: var(--rg-mist);
+  font-size: 13px;
+}
+.storyBadge strong { font-size: 40px; font-weight: 600; line-height: 1; color: var(--rg-gold-2); }
+.storyBadge b { display: block; margin-bottom: 2px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rg-ivory); }
+@media (min-width: 900px) {
+  .story { grid-template-columns: 1fr 1.05fr; gap: 72px; }
+  .storyBadge { left: -28px; right: auto; max-width: 340px; }
+}
+
+/* 03 mission / vision / promise + values */
+.purpose { background: var(--rg-ivory); }
+.purposeGrid { display: grid; gap: 18px; }
+@media (min-width: 800px) { .purposeGrid { grid-template-columns: repeat(3, 1fr); } }
+.purposeCard { padding: 30px 28px; background: #fff; border: 1px solid #e8dfcc; border-radius: 12px; }
+.purposeCard svg { width: 34px; height: 34px; fill: none; stroke: var(--rg-gold-deep); stroke-width: 1.4; stroke-linejoin: round; }
+.purposeCard h3 { margin: 18px 0 10px; font-size: 20px; font-weight: 500; color: var(--rg-ink); }
+.purposeCard p { font-size: 15px; color: var(--rg-muted); }
+.values { margin-top: 40px; padding-top: 32px; border-top: 1px solid #e2d8c2; }
+.values h3 { margin-bottom: 22px; font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rg-gold-deep); }
+.values ul { display: grid; gap: 22px; }
+.values li { display: grid; gap: 4px; }
+.values strong { font-size: 16px; font-weight: 500; color: var(--rg-ink); }
+.values span { font-size: 14px; color: var(--rg-muted); }
+@media (min-width: 640px) { .values ul { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) {
+  .values ul { grid-template-columns: repeat(5, 1fr); gap: 0; }
+  .values li { padding-inline: 20px; border-left: 1px solid #e2d8c2; }
+  .values li:first-child { padding-left: 0; border-left: 0; }
+}
+
+/* 04 our people: dark photo, copy left, trait card right */
+.people {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(80px, 10vw, 130px);
+  background-size: cover;
+  background-position: center 30%;
+  color: var(--rg-ivory);
+}
+.people::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(14, 14, 16, 0.94) 0%, rgba(14, 14, 16, 0.78) 55%, rgba(14, 14, 16, 0.55) 100%);
+}
+.peopleInner { display: grid; gap: 40px; align-items: center; }
+.peopleInner > div > p:first-child { color: var(--rg-gold-2); }
+.peopleInner h2 {
+  max-width: 13ch;
+  margin-bottom: 20px;
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--rg-ivory);
+}
+.peopleInner > div > p:not(:first-child) { max-width: 500px; margin-bottom: 16px; color: var(--rg-mist); }
+.peopleInner .ctaRow, .peopleInner a { margin-top: 12px; }
+.traits {
+  justify-self: start;
+  display: grid;
+  gap: 0;
+  min-width: 240px;
+  padding: 10px 28px;
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  border-radius: 14px;
+  background: rgba(14, 14, 16, 0.6);
+  backdrop-filter: blur(8px);
+}
+.traits li { padding-block: 18px; font-size: 14px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rg-gold-2); }
+.traits li + li { border-top: 1px solid rgba(201, 162, 75, 0.25); }
+@media (min-width: 900px) {
+  .peopleInner { grid-template-columns: 1.3fr 0.7fr; }
+  .traits { justify-self: end; }
+}
+
+/* 05 pillars inside the 40+ band */
+.pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.pillars li { padding-left: 14px; border-left: 2px solid var(--rg-gold); font-size: 15px; color: var(--rg-ivory); }
+
+/* 06 expertise: short, navigational */
+.expertise { display: grid; gap: 14px; }
+@media (min-width: 640px) { .expertise { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .expertise { grid-template-columns: repeat(3, 1fr); } }
+/* The link fills its grid cell, so every tile in a row is the same height. */
+.expertise li { display: flex; }
+.expertise a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid #e8dfcc;
+  border-radius: 12px;
+  color: var(--rg-gold-deep);
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.expertise a:hover, .expertise a:focus-visible {
+  border-color: var(--rg-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -30px rgba(14, 14, 16, 0.4);
+  outline: none;
+}
+.expertise a:hover svg:last-child { transform: translateX(4px); }
+.expIcon { flex: none; width: 32px; height: 32px; fill: none; stroke: var(--rg-gold-deep); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.expText { flex: 1; min-width: 0; }
+.expText strong { display: block; font-size: 17px; font-weight: 500; color: var(--rg-ink); }
+.expText small { display: block; font-size: 13px; color: var(--rg-muted); }
+
+/* 07 why clients partner: heading left, divided rows right */
+.reasonsWrap { background: var(--rg-ivory); }
+.reasons { display: grid; gap: 40px; }
+.reasons ol { margin: 0; padding: 0; list-style: none; }
+.reasons li { display: grid; grid-template-columns: 48px 1fr; gap: 12px; padding-block: 24px; border-top: 1px solid rgba(201, 162, 75, 0.45); }
+.reasons li:last-child { border-bottom: 1px solid rgba(201, 162, 75, 0.45); }
+.reasons li > span { padding-top: 4px; }
+.reasons strong { display: block; margin-bottom: 6px; font-size: 19px; font-weight: 500; color: var(--rg-ink); }
+.reasons p { font-size: 15px; color: var(--rg-muted); }
+@media (min-width: 900px) {
+  .reasons { grid-template-columns: 0.9fr 1.1fr; gap: 80px; }
+  .reasons > div { position: sticky; top: 120px; align-self: start; }
+}
+
+/* 08 houston */
+.houston {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(90px, 11vw, 150px);
+  background-size: cover;
+  background-position: center;
+  color: var(--rg-ivory);
+  text-align: center;
+}
+.houston::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(14, 14, 16, 0.8); }
+.houstonInner { display: grid; justify-items: center; }
+.houstonInner > p:first-child { color: var(--rg-gold-2); }
+.houstonInner h2 {
+  max-width: 20ch;
+  margin-bottom: 20px;
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--rg-ivory);
+}
+.houstonInner > p:nth-of-type(2) { max-width: 560px; color: var(--rg-mist); }
+.houstonInner > p:last-child { justify-content: center; padding-bottom: 0; }
+
+/* 09 cta buttons */
+.ctaRow { display: flex; flex-wrap: wrap; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .expertise a, .expertise a svg { transition: none; }
+}

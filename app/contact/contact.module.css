@@ -1,0 +1,120 @@
+/* Contact page. Tokens come from .site via the layout; hero and call band reuse
+   ../services/services.module.css, and the form's light theme comes from
+   .quote in ../page.module.css. */
+
+/* [class] where this file overrides a class from another stylesheet
+   (services .heroTitle, page .form): bundle order differs in production. */
+.heroTitle[class] { max-width: 12ch; }
+.btnRow { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* 2. quick contact cards, pulled up over the hero edge */
+.cardsBand { position: relative; z-index: 1; margin-top: -56px; padding-bottom: clamp(56px, 7vw, 88px); }
+.cards { display: grid; gap: 16px; }
+@media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 26px 24px;
+  background: #fff;
+  border: 1px solid #e8dfcc;
+  border-radius: 14px;
+  box-shadow: 0 24px 48px -36px rgba(14, 14, 16, 0.5);
+  text-decoration: none;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.card:hover, .card:focus-visible { transform: translateY(-3px); border-color: var(--rg-gold); outline: none; }
+.cardIcon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 10px;
+  border: 1px solid #e3d3a8;
+  border-radius: 50%;
+  background: rgba(201, 162, 75, 0.1);
+}
+.cardIcon svg { width: 20px; height: 20px; fill: none; stroke: var(--rg-gold-deep); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.card strong { font-size: 18px; font-weight: 500; color: var(--rg-ink); }
+.cardMain { font-size: 15px; font-weight: 500; color: var(--rg-text); line-height: 1.5; }
+.card small { font-size: 13px; color: var(--rg-muted); }
+
+/* 3. how can we help + form */
+.help { padding-block: clamp(64px, 8vw, 110px); }
+.helpGrid { display: grid; gap: 48px; align-items: start; }
+@media (min-width: 1024px) { .helpGrid { grid-template-columns: 0.8fr 1.2fr; gap: 72px; } }
+.helpLead { margin: 16px 0 28px; max-width: 440px; color: var(--rg-muted); }
+.serviceList { border-top: 1px solid #e2d8c2; }
+.serviceList a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 4px;
+  border-bottom: 1px solid #e2d8c2;
+  color: var(--rg-gold-deep);
+  text-decoration: none;
+  transition: padding 0.25s, background 0.25s;
+}
+.serviceList a > span { flex: 1; font-size: 16px; color: var(--rg-ink); }
+.serviceList a:hover { padding-left: 12px; background: rgba(201, 162, 75, 0.06); }
+.serviceList a:hover svg:last-child { transform: translateX(4px); }
+.serviceIcon { flex: none; width: 28px; height: 28px; fill: none; stroke: var(--rg-gold-deep); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.formCol { min-width: 0; }
+.formTitle { font-size: clamp(26px, 2.6vw, 32px); font-weight: 500; color: var(--rg-ink); }
+.formLead { margin: 6px 0 22px; color: var(--rg-muted); }
+.form[class] { padding: clamp(24px, 3.4vw, 40px); }
+
+/* 5. location */
+.location { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 900px) { .location { grid-template-columns: 1.1fr 0.9fr; gap: 72px; } }
+.map {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 1px solid #e8dfcc;
+  border-radius: 14px;
+  background: #f1ebdf;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.map > svg { display: block; width: 100%; height: 100%; }
+.map:hover, .map:focus-visible { border-color: var(--rg-gold); box-shadow: 0 24px 48px -36px rgba(14, 14, 16, 0.45); outline: none; }
+.mapLabel {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--rg-ink);
+  color: var(--rg-ivory);
+  font-size: 13px;
+  font-weight: 500;
+}
+.map:hover .mapLabel svg { transform: translateX(3px); }
+.details { display: grid; gap: 16px; margin-bottom: 30px; }
+.details li { display: flex; align-items: center; gap: 14px; }
+.details .cardIcon { margin: 0; flex: none; }
+.details a { color: var(--rg-text); text-decoration: none; line-height: 1.5; }
+.details a:hover { color: var(--rg-gold-deep); }
+
+@media (max-width: 767px) {
+  .cardsBand { margin-top: 0; padding-top: 32px; padding-bottom: 48px; }
+}
+/* Phones: the four contact cards as a compact 2 x 2 grid. */
+@media (max-width: 639px) {
+  .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { gap: 4px; padding: 16px 14px; border-radius: 12px; }
+  .cardIcon { width: 36px; height: 36px; margin-bottom: 6px; }
+  .cardIcon svg { width: 17px; height: 17px; }
+  .card strong { font-size: 15px; }
+  .cardMain { font-size: 13px; overflow-wrap: anywhere; }
+  .card small { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .serviceList a, .serviceList svg { transition: none; }
+}
