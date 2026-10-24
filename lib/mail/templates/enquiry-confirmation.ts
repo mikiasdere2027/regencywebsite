@@ -1,4 +1,4 @@
-import { PHONE, REGENCY_ORIGIN } from '../../../app/site';
+import { LOGO_HORIZONTAL, PHONE, REGENCY_ORIGIN } from '../../../app/site';
 
 type EnquiryConfirmation = {
   firstName: string;
@@ -42,10 +42,10 @@ export function buildEnquiryConfirmation({ firstName, requestType, service }: En
           <tr><td style="padding:26px 30px 24px;background:#111113;border-bottom:5px solid #c9a24b;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
               <tr>
-                <td valign="middle" style="color:#f6f1e7;font-size:20px;font-weight:700;letter-spacing:.04em;line-height:1.25;">REGENCY<br><span style="color:#e3c67a;font-size:12px;letter-spacing:.18em;">PARKING SERVICES</span></td>
-                <td align="right" valign="middle" style="width:92px;">
+                <td valign="middle" style="color:#e3c67a;font-size:11px;font-weight:700;letter-spacing:.16em;line-height:1.8;">CUSTOMER CARE<br><span style="color:#f6f1e7;font-size:11px;letter-spacing:.12em;">REQUEST RECEIVED</span></td>
+                <td align="right" valign="middle" style="width:180px;">
                   <a href="${REGENCY_ORIGIN}" style="display:inline-block;text-decoration:none;">
-                    <img src="${REGENCY_ORIGIN}/images/clients/regency/RP-newlogo1.png" width="88" height="50" alt="Regency Parking Services logo" style="display:block;width:88px;height:50px;object-fit:contain;border:0;border-radius:7px;background:#f6f1e7;">
+                    <img src="${REGENCY_ORIGIN}${LOGO_HORIZONTAL}" width="168" height="56" alt="Regency Parking Services" style="display:block;width:168px;height:56px;object-fit:contain;border:0;">
                   </a>
                 </td>
               </tr>

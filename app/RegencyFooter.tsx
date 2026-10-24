@@ -1,5 +1,5 @@
 import FooterSignup from './FooterSignup';
-import { ADDRESS, IMG, MAP_URL, PHONE } from './site';
+import { ADDRESS, IMG, LOGO_HORIZONTAL, MAP_URL, PHONE } from './site';
 import styles from './page.module.css';
 
 /** Shared footer for every Regency mockup page; carries the contact details. */
@@ -84,7 +84,7 @@ export default function RegencyFooter({ base }: { base: string }) {
       <div className={styles.footerBar}>
         <div className={`${styles.wrap} ${styles.footerBarInner}`}>
           {/* eslint-disable-next-line @next/next/no-img-element -- static client asset */}
-          <img src={`${IMG}/RP-newlogo1.png`} alt="Regency Parking Service" width={90} height={50} />
+          <img src={LOGO_HORIZONTAL} alt="Regency Parking Services" width={180} height={60} />
           <p>© {new Date().getFullYear()} Regency Parking Services LLC · Houston, Texas</p>
         </div>
       </div>
