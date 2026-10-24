@@ -1,14 +1,16 @@
 import { z } from 'zod';
 import { rateLimit } from '../../../lib/rate-limit';
 import { sendEmail } from '../../../lib/mail/send';
+import { buildEnquiryConfirmation } from '../../../lib/mail/templates/enquiry-confirmation';
 
 /**
  * POST /api/enquiry — every form on regencyparkingservice.com.
  *
  * Emails the submission to Regency (REGENCY_LEAD_TO) from their own verified
  * sending domain (REGENCY_EMAIL_FROM), with Reply-To set to the visitor when
- * they gave an email, so Regency can answer straight from their inbox.
- * Nothing is stored: the email is the record.
+ * they gave an email, so Regency can answer straight from their inbox. Valid
+ * business enquiries also receive a branded confirmation email. Nothing is
+ * stored: the email is the record.
  */
 export const dynamic = 'force-dynamic';
 
@@ -63,6 +65,7 @@ export async function POST(req: Request) {
 
   const visitorEmail = filled.find(([k, v]) => /email/i.test(k) && EMAIL_RE.test(v))?.[1]
     ?? filled.find(([, v]) => EMAIL_RE.test(v))?.[1];
+  const confirmationEmail = filled.find(([k, v]) => /email|contact/i.test(k) && EMAIL_RE.test(v))?.[1];
   const who = filled.find(([k]) => k === 'name')?.[1] ?? visitorEmail ?? 'website visitor';
 
   const lines = filled.map(([k, v]) => `${label(k)}: ${v}`);
@@ -77,7 +80,7 @@ export async function POST(req: Request) {
 
   try {
     await sendEmail({
-      from: from ?? 'Regency Parking Services <website@mail.regencyparkingservice.com>',
+      from: from ?? 'Regency Parking Services <website@regencyparkingservice.com>',
       to,
       subject: `${FORMS[form]} — ${who}`,
       text,
@@ -87,5 +90,31 @@ export async function POST(req: Request) {
     console.error('[regency] enquiry email failed', err);
     return Response.json({ ok: false, error: 'send_failed' }, { status: 502 });
   }
+
+  if (confirmationEmail && form !== 'newsletter') {
+    const fullName = filled.find(([key]) => key === 'name')?.[1] ?? '';
+    const firstName = fullName.split(/\s+/)[0] || 'there';
+    const service = filled.find(([key]) => /service/i.test(key))?.[1];
+    const confirmation = buildEnquiryConfirmation({
+      firstName,
+      requestType: FORMS[form],
+      service,
+    });
+
+    try {
+      await sendEmail({
+        from: from ?? 'Regency Parking Services <website@regencyparkingservice.com>',
+        to: confirmationEmail,
+        subject: `We received your ${FORMS[form].toLowerCase()} | Regency Parking Services`,
+        ...confirmation,
+        replyTo: to,
+      });
+    } catch (err) {
+      // A confirmation-mail failure shouldn't make the form look unsent after
+      // the Regency team has already received the enquiry.
+      console.error('[regency] requester confirmation email failed', err);
+    }
+  }
+
   return Response.json({ ok: true });
 }
