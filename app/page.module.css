@@ -123,8 +123,8 @@
 .topbarInner svg { width: 16px; height: 16px; fill: none; stroke: var(--rg-gold-2); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 .headerInner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 88px; }
-.logo img { height: 60px; width: auto; transition: height 0.3s; }
-.headerSolid .logo img { height: 48px; }
+.logo img { height: 72px; width: auto; transition: height 0.3s; }
+.headerSolid .logo img { height: 58px; }
 
 .nav { display: flex; align-items: stretch; background: #fff; box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.6); }
 .navLinks { display: flex; align-items: center; padding-inline: 18px; }
@@ -187,7 +187,7 @@
 @media (max-width: 1023px) {
   .topbar { display: none; }
   .headerInner { min-height: 72px; }
-  .logo img { height: 48px; }
+  .logo img { height: 58px; }
   .menuBtn {
     display: grid;
     gap: 5px;
