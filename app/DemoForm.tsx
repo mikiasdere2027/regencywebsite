@@ -82,11 +82,10 @@ export default function DemoForm({
         </svg>
         <h3>
           <span>Thank you —</span>
-          <strong>your inquiry has been received.</strong>
+          <strong>request received.</strong>
         </h3>
         <p className={styles.successMessage}>
-          Our team has received your message and will get back to you shortly. We’re excited to
-          learn more about your needs.
+          Our team has received your request and will be in touch shortly.
         </p>
         <button
           type="button"
