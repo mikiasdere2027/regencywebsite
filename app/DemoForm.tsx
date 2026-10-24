@@ -74,15 +74,42 @@ export default function DemoForm({
 
   if (sent) {
     return (
-      <div className={`${className ?? ''} ${styles.formSent}`} role="status">
-        <h3>Thank you — request received.</h3>
-        <p>
-          The Regency team will get back to you shortly. For anything urgent, call{' '}
-          <a href={`tel:${PHONE.replace(/-/g, '')}`}>{PHONE}</a>.
+      <div className={`${className ?? ''} ${styles.formSent} ${styles.quickSuccess}`} role="status">
+        <svg className={styles.successMark} viewBox="0 0 140 92" aria-hidden="true">
+          <path d="m20 27 8 5M13 46h11m-4 19 8-5m84-33 8-5m-4 24h11m-15 13 8 5" />
+          <circle cx="70" cy="46" r="30" />
+          <path className={styles.successCheck} d="m55 46 10 10 21-23" />
+        </svg>
+        <h3>
+          <span>Thank you —</span>
+          <strong>your inquiry has been received.</strong>
+        </h3>
+        <p className={styles.successMessage}>
+          Our team has received your message and will get back to you shortly. We’re excited to
+          learn more about your needs.
         </p>
-        <button type="button" className={`${styles.btn} ${styles.btnGhost}`} onClick={() => setSent(false)}>
+        <button
+          type="button"
+          className={`${styles.btn} ${styles.btnGhost} ${styles.successAction}`}
+          onClick={() => setSent(false)}
+        >
           Back to the form
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 12h15m-6-6 6 6-6 6" />
+          </svg>
         </button>
+        <div className={styles.successAssist}>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
+          </svg>
+          <span className={styles.successDivider} aria-hidden="true" />
+          <p>
+            <span>Need immediate assistance?</span>
+            <span>
+              Call us at <a href={`tel:${PHONE.replace(/-/g, '')}`}>{PHONE}</a>
+            </span>
+          </p>
+        </div>
       </div>
     );
   }
