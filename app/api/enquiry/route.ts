@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { rateLimit } from '../../../lib/rate-limit';
 import { sendEmail } from '../../../lib/mail/send';
 import { buildEnquiryConfirmation } from '../../../lib/mail/templates/enquiry-confirmation';
+import { buildEnquiryNotification } from '../../../lib/mail/templates/enquiry-notification';
 
 /**
  * POST /api/enquiry — every form on regencyparkingservice.com.
@@ -37,9 +38,6 @@ function clientIp(req: Request): string {
   return fwd ? fwd.split(',')[0].trim() : 'unknown';
 }
 
-const label = (key: string) =>
-  key.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-
 export async function POST(req: Request) {
   if (!rateLimit(`regency:${clientIp(req)}`, { limit: 6, windowSec: 600 })) {
     return Response.json({ ok: false, error: 'rate_limited' }, { status: 429 });
@@ -68,22 +66,20 @@ export async function POST(req: Request) {
   const confirmationEmail = filled.find(([k, v]) => /email|contact/i.test(k) && EMAIL_RE.test(v))?.[1];
   const who = filled.find(([k]) => k === 'name')?.[1] ?? visitorEmail ?? 'website visitor';
 
-  const lines = filled.map(([k, v]) => `${label(k)}: ${v}`);
-  const text = [
-    `New ${FORMS[form].toLowerCase()} from regencyparkingservice.com`,
-    '',
-    ...lines,
-    '',
-    page ? `Sent from: ${page}` : '',
-    visitorEmail ? 'Reply to this email to answer the visitor directly.' : 'No email given — use the phone number above.',
-  ].filter((l, i, a) => l !== '' || a[i - 1] !== '').join('\n');
+  const notification = buildEnquiryNotification({
+    requestType: FORMS[form],
+    name: who,
+    fields: filled,
+    page,
+    visitorEmail,
+  });
 
   try {
     await sendEmail({
       from: from ?? 'Regency Parking Services <website@regencyparkingservice.com>',
       to,
       subject: `${FORMS[form]} — ${who}`,
-      text,
+      ...notification,
       replyTo: visitorEmail,
     });
   } catch (err) {
