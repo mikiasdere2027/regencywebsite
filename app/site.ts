@@ -4,6 +4,7 @@ export const BASE = '';
 export const REGENCY_ORIGIN = 'https://www.regencyparkingservice.com';
 export const IMG = '/images/clients/regency';
 export const LOGO_HORIZONTAL = '/Regency_Logo_horizontal.svg';
+export const LOGO_EMAIL = '/Regency_Logo_horizontal.png';
 export const LOGO_ICON = '/Regency_Logo_icon.svg';
 export const PHONE = '713-478-1104';
 /** The six services, as named in forms and lists. */

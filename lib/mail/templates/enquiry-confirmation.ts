@@ -1,4 +1,4 @@
-import { LOGO_HORIZONTAL, PHONE, REGENCY_ORIGIN } from '../../../app/site';
+import { LOGO_EMAIL, PHONE, REGENCY_ORIGIN } from '../../../app/site';
 
 type EnquiryConfirmation = {
   firstName: string;
@@ -45,7 +45,7 @@ export function buildEnquiryConfirmation({ firstName, requestType, service }: En
                 <td valign="middle" style="color:#e3c67a;font-size:11px;font-weight:700;letter-spacing:.16em;line-height:1.8;">CUSTOMER CARE<br><span style="color:#f6f1e7;font-size:11px;letter-spacing:.12em;">REQUEST RECEIVED</span></td>
                 <td align="right" valign="middle" style="width:180px;">
                   <a href="${REGENCY_ORIGIN}" style="display:inline-block;text-decoration:none;">
-                    <img src="${REGENCY_ORIGIN}${LOGO_HORIZONTAL}" width="168" height="56" alt="Regency Parking Services" style="display:block;width:168px;height:56px;object-fit:contain;border:0;">
+                    <img src="${REGENCY_ORIGIN}${LOGO_EMAIL}" width="168" height="56" alt="Regency Parking Services" style="display:block;width:168px;height:56px;border:0;">
                   </a>
                 </td>
               </tr>
