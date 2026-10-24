@@ -81,11 +81,11 @@ export default function DemoForm({
           <path className={styles.successCheck} d="m55 46 10 10 21-23" />
         </svg>
         <h3>
-          <span>Thank you —</span>
+          <span>Thank you </span>
           <strong>request received.</strong>
         </h3>
         <p className={styles.successMessage}>
-          Our team has received your request and will be in touch shortly.
+          Our team has received your request<br />and will be in touch shortly.
         </p>
         <button
           type="button"

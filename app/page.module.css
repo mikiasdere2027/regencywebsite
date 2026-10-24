@@ -702,13 +702,13 @@
 .successMark { width: 76px; height: 50px; fill: none; stroke: var(--rg-gold-2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .successMark .successCheck { stroke-width: 3.5; }
 .quickSuccess h3 {
-  display: grid;
-  gap: 1px;
+  display: block;
   max-width: none;
-  font-size: clamp(20px, 2vw, 25px);
-  line-height: 1.08;
+  font-size: clamp(15px, 5.2vw, 22px);
+  line-height: 1.1;
   letter-spacing: -0.025em;
   color: var(--rg-ivory);
+  white-space: nowrap;
 }
 .quickSuccess h3 span { color: var(--rg-ivory); }
 .quickSuccess h3 strong { color: var(--rg-gold-2); font-size: inherit; font-weight: 700; }
