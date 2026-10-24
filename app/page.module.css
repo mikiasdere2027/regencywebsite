@@ -18,7 +18,7 @@
   --rg-crimson: #9e1b1e;
   --rg-radius: 14px;
   --rg-gutter: 16px;
-  --rg-font-sans: "Prompt";
+  --rg-font-sans: var(--font-regency-prompt);
   --rg-font-display: var(--rg-font-sans);
 
   font-family: var(--rg-font-sans), system-ui, sans-serif;

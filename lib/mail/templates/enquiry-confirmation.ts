@@ -34,9 +34,9 @@ export function buildEnquiryConfirmation({ firstName, requestType, service }: En
 
   const html = `<!doctype html>
 <html lang="en">
-  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="x-apple-disable-message-reformatting"><title>We received your inquiry</title></head>
-  <body style="margin:0;padding:0;background:#f1f0ed;color:#242321;font-family:Arial,Helvetica,sans-serif;">
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f1f0ed;">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="x-apple-disable-message-reformatting"><title>We received your inquiry</title><style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');</style></head>
+  <body style="margin:0;padding:0;background:#f1f0ed;color:#242321;font-family:'Prompt',Arial,Helvetica,sans-serif;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f1f0ed;font-family:'Prompt',Arial,Helvetica,sans-serif;">
       <tr><td align="center" style="padding:24px 12px;">
         <table role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:640px;background:#ffffff;border:1px solid #e6e2da;border-radius:14px;overflow:hidden;">
           <tr><td style="padding:26px 30px 24px;background:#111113;border-bottom:5px solid #c9a24b;">

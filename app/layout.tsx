@@ -1,10 +1,18 @@
 import type { Metadata } from 'next';
+import { Prompt } from 'next/font/google';
 import type { ReactNode } from 'react';
 import RegencyHeader from './RegencyHeader';
 import RegencyFooter from './RegencyFooter';
 import { ADDRESS, IMG, LOGO_HORIZONTAL, LOGO_ICON, PHONE, REGENCY_ORIGIN } from './site';
 import { regencyBase } from './base';
 import styles from './page.module.css';
+
+const prompt = Prompt({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-regency-prompt',
+});
 
 /**
  * Standalone shell for the Regency Parking Services website.
@@ -23,7 +31,7 @@ export const metadata: Metadata = {
 export default function RegencyLayout({ children }: { children: ReactNode }) {
   const base = regencyBase();
   return (
-    <div id="top" className={styles.site}>
+    <div id="top" className={`${styles.site} ${prompt.variable}`}>
       <RegencyHeader base={base} logo={LOGO_HORIZONTAL} phone={PHONE} address={ADDRESS.join(', ')} />
       {children}
       <RegencyFooter base={base} />
