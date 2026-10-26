@@ -31,10 +31,14 @@ export const metadata: Metadata = {
 export default function RegencyLayout({ children }: { children: ReactNode }) {
   const base = regencyBase();
   return (
-    <div id="top" className={`${styles.site} ${prompt.variable}`}>
-      <RegencyHeader base={base} logo={LOGO_HORIZONTAL} phone={PHONE} address={ADDRESS.join(', ')} />
-      {children}
-      <RegencyFooter base={base} />
-    </div>
+    <html lang="en">
+      <body style={{ margin: 0 }}>
+        <div id="top" className={`${styles.site} ${prompt.variable}`}>
+          <RegencyHeader base={base} logo={LOGO_HORIZONTAL} phone={PHONE} address={ADDRESS.join(', ')} />
+          {children}
+          <RegencyFooter base={base} />
+        </div>
+      </body>
+    </html>
   );
 }

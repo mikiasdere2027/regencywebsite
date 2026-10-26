@@ -28,6 +28,7 @@
   background: var(--rg-paper);
   overflow-x: clip;
 }
+.site *, .site *::before, .site *::after { box-sizing: border-box; }
 /* Resets at zero specificity, so any real rule beats them wherever it sits.
    In production the Services / About / Contact stylesheets load BEFORE this
    one; at (0,1,0) these resets used to win on order and wipe their margins. */
